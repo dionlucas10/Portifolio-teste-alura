@@ -1,50 +1,235 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portifolio</title>
-    <link rel="stylesheet" href="style/style.css">
-</head>
-
-<body>
-    <header class="cabecalho">
-        <nav class="navegacao">
-            <a class="botao-navegacao" href="index.html">Home</a>
-            <a class="botao-navegacao" href="about.html">Sobre mim</a>
-        </nav>
-    </header>
-    <main class="apresentacao">
-        <section class="apresentacao-conteudo">
-            <h1 class="titulo-conteudo">Eleve seu negócio digital a outro nível <strong class="titulo-destaque">com um
-                    Front-end de qualidade!</strong></h1>
-            <p class="para-conteudo">Olá! Sou Joana Santos, desenvolvedora Front-end com especialidade em React, HTML e
-                CSS. Ajudo pequenos negócios e designers a colocarem em prática boas ideias. Vamos conversar?
-            </p>
-            <div class="apresentacao-links">
-                <h2 class="apresentacao_link">Acesse minhas redes:</h2>
-                <a class="botao-link" href="https://github.com/dionlucas10">
-                    <img src="assets/github.png" alt="Ícone do Github">
-                    Github
-                </a>
-                <a class="botao-link" href="https://www.linkedin.com/in/dion-lucas-4911351a9">
-                    <img src="assets/linkedin.png" alt="Ícone do Linkedin">
-                    Linkedin
-                </a>
-                <a class="botao-link" href="https://github.com/dionlucas10">
-                    <img src="assets/twitch.png" alt="Ícone do Twitch">
-                    Twitch
-                </a>
-            </div>
-        </section>
-        <img class="apresentacao-img" src="IMG/foto.png" alt="Foto da Joana Santos programando">
-    </main>
-    <footer class="rodape">
-        Desenvolvido por Alura.
-    </footer>
-
-    <!-- <script src="oi.js"></script> -->
-</body>
-
-</html>
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orações de Fé</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&amp;family=Lora:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet">
+  <style>
+    .font-title { font-family: 'Cinzel', serif; }
+    .font-body { font-family: 'Lora', serif; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes glow {
+      0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)); }
+      50% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8)); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .float-animation { animation: float 4s ease-in-out infinite; }
+    .glow-animation { animation: glow 3s ease-in-out infinite; }
+    .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+    
+    .prayer-card {
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+    
+    .prayer-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .btn-divine {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-divine::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+    
+    .btn-divine:hover::before {
+      left: 100%;
+    }
+    
+    .modal-overlay {
+      backdrop-filter: blur(5px);
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-body overflow-auto">
+  <div id="app-container" class="min-h-full w-full" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);">
+   <!-- Header -->
+   <header class="relative py-8 px-4 text-center">
+    <div class="absolute inset-0 overflow-hidden">
+     <div class="absolute top-4 left-1/4 w-2 h-2 bg-yellow-300 rounded-full opacity-60 glow-animation"></div>
+     <div class="absolute top-12 right-1/3 w-1 h-1 bg-yellow-200 rounded-full opacity-40 glow-animation" style="animation-delay: 1s;"></div>
+     <div class="absolute top-8 right-1/4 w-1.5 h-1.5 bg-yellow-100 rounded-full opacity-50 glow-animation" style="animation-delay: 2s;"></div>
+    </div><!-- Cross SVG -->
+    <div class="float-animation glow-animation mb-4">
+     <svg width="80" height="100" viewbox="0 0 80 100" class="mx-auto">
+      <defs>
+       <lineargradient id="crossGold" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#FFD700" />
+        <stop offset="50%" style="stop-color:#FFA500" />
+        <stop offset="100%" style="stop-color:#FFD700" />
+       </lineargradient>
+       <filter id="crossGlow">
+        <fegaussianblur stddeviation="2" result="coloredBlur" />
+        <femerge>
+         <femergenode in="coloredBlur" />
+         <femergenode in="SourceGraphic" />
+        </femerge>
+       </filter>
+      </defs> <rect x="30" y="0" width="20" height="100" rx="3" fill="url(#crossGold)" filter="url(#crossGlow)" /> <rect x="5" y="20" width="70" height="18" rx="3" fill="url(#crossGold)" filter="url(#crossGlow)" />
+     </svg>
+    </div>
+    <h1 id="site-title" class="font-title text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-yellow-400 to-yellow-200 mb-2">Y.ES.HUA</h1>
+    <p id="welcome-message" class="text-yellow-100/80 text-lg italic">"Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei."</p><a id="instagram-btn" href="https://instagram.com/y.es.hua" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-4 px-6 py-2 bg-gradient-to-r from-pink-600 to-red-600 text-white font-title rounded-full shadow-lg hover:shadow-pink-500/30 hover:scale-105 transition-all">
+     <svg width="20" height="20" viewbox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.322a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z" />
+     </svg> Siga-nos no Instagram </a>
+   </header><!-- Navigation Buttons -->
+   <nav class="flex flex-wrap justify-center gap-3 px-4 mb-8">
+    <button onclick="showSection('prayers')" class="btn-divine px-6 py-3 bg-gradient-to-r from-amber-600 to-yellow-600 text-white font-title rounded-full shadow-lg hover:shadow-amber-500/30 hover:scale-105"> 📿 Orações </button> <button onclick="showSection('saints')" class="btn-divine px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-title rounded-full shadow-lg hover:shadow-purple-500/30 hover:scale-105"> 👼 Santos </button> <button onclick="showSection('verses')" class="btn-divine px-6 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-title rounded-full shadow-lg hover:shadow-emerald-500/30 hover:scale-105"> 📖 Versículos </button> <button onclick="showSection('rosary')" class="btn-divine px-6 py-3 bg-gradient-to-r from-rose-600 to-pink-600 text-white font-title rounded-full shadow-lg hover:shadow-rose-500/30 hover:scale-105"> 📿 Rosário </button>
+   </nav><!-- Main Content -->
+   <main class="px-4 pb-12">
+    <!-- Prayers Section -->
+    <section id="prayers-section" class="max-w-6xl mx-auto">
+     <h2 class="font-title text-3xl text-yellow-300 text-center mb-8">Orações Sagradas</h2>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Pai Nosso -->
+      <div class="prayer-card bg-white/10 rounded-2xl p-6 border border-yellow-500/20 cursor-pointer" onclick="openPrayer('painosso')">
+       <div class="text-center mb-4">
+        <svg width="60" height="60" viewbox="0 0 60 60" class="mx-auto mb-3">
+         <circle cx="30" cy="30" r="28" fill="none" stroke="#FFD700" stroke-width="2" /> <path d="M30 10 L30 50 M15 25 L45 25" stroke="#FFD700" stroke-width="3" stroke-linecap="round" /> <circle cx="30" cy="30" r="8" fill="none" stroke="#FFA500" stroke-width="1.5" />
+        </svg>
+        <h3 class="font-title text-xl text-yellow-200">Pai Nosso</h3>
+       </div>
+       <p class="text-yellow-100/70 text-sm text-center">A oração que Jesus ensinou aos seus discípulos</p><button class="mt-4 w-full py-2 bg-yellow-600/30 hover:bg-yellow-600/50 text-yellow-200 rounded-lg transition-colors"> Rezar Agora </button>
+      </div><!-- Ave Maria -->
+      <div class="prayer-card bg-white/10 rounded-2xl p-6 border border-blue-400/20 cursor-pointer" onclick="openPrayer('avemaria')">
+       <div class="text-center mb-4">
+        <svg width="60" height="60" viewbox="0 0 60 60" class="mx-auto mb-3">
+         <ellipse cx="30" cy="35" rx="15" ry="20" fill="none" stroke="#60A5FA" stroke-width="2" /> <circle cx="30" cy="18" r="8" fill="none" stroke="#60A5FA" stroke-width="2" /> <path d="M22 12 Q30 5 38 12" fill="none" stroke="#FFD700" stroke-width="2" /> <circle cx="30" cy="8" r="3" fill="#FFD700" />
+        </svg>
+        <h3 class="font-title text-xl text-blue-200">Ave Maria</h3>
+       </div>
+       <p class="text-blue-100/70 text-sm text-center">Saudação à Virgem Maria, Mãe de Deus</p><button class="mt-4 w-full py-2 bg-blue-600/30 hover:bg-blue-600/50 text-blue-200 rounded-lg transition-colors"> Rezar Agora </button>
+      </div><!-- Credo -->
+      <div class="prayer-card bg-white/10 rounded-2xl p-6 border border-emerald-400/20 cursor-pointer" onclick="openPrayer('credo')">
+       <div class="text-center mb-4">
+        <svg width="60" height="60" viewbox="0 0 60 60" class="mx-auto mb-3">
+         <path d="M30 5 L35 20 L50 20 L38 30 L43 45 L30 36 L17 45 L22 30 L10 20 L25 20 Z" fill="none" stroke="#34D399" stroke-width="2" /> <circle cx="30" cy="25" r="5" fill="#34D399" />
+        </svg>
+        <h3 class="font-title text-xl text-emerald-200">Credo</h3>
+       </div>
+       <p class="text-emerald-100/70 text-sm text-center">Profissão de fé cristã</p><button class="mt-4 w-full py-2 bg-emerald-600/30 hover:bg-emerald-600/50 text-emerald-200 rounded-lg transition-colors"> Rezar Agora </button>
+      </div><!-- Salve Rainha -->
+      <div class="prayer-card bg-white/10 rounded-2xl p-6 border border-purple-400/20 cursor-pointer" onclick="openPrayer('salverainha')">
+       <div class="text-center mb-4">
+        <svg width="60" height="60" viewbox="0 0 60 60" class="mx-auto mb-3">
+         <path d="M15 35 L22 20 L30 30 L38 20 L45 35" fill="none" stroke="#A78BFA" stroke-width="2" /> <circle cx="15" cy="35" r="3" fill="#FFD700" /> <circle cx="30" cy="30" r="3" fill="#FFD700" /> <circle cx="45" cy="35" r="3" fill="#FFD700" /> <path d="M12 38 Q30 50 48 38" fill="none" stroke="#A78BFA" stroke-width="2" />
+        </svg>
+        <h3 class="font-title text-xl text-purple-200">Salve Rainha</h3>
+       </div>
+       <p class="text-purple-100/70 text-sm text-center">Oração à Rainha do Céu</p><button class="mt-4 w-full py-2 bg-purple-600/30 hover:bg-purple-600/50 text-purple-200 rounded-lg transition-colors"> Rezar Agora </button>
+      </div><!-- Ato de Contrição -->
+      <div class="prayer-card bg-white/10 rounded-2xl p-6 border border-rose-400/20 cursor-pointer" onclick="openPrayer('contricao')">
+       <div class="text-center mb-4">
+        <svg width="60" height="60" viewbox="0 0 60 60" class="mx-auto mb-3">
+         <path d="M30 15 C20 15 15 25 15 32 C15 42 30 52 30 52 C30 52 45 42 45 32 C45 25 40 15 30 15" fill="none" stroke="#FB7185" stroke-width="2" /> <path d="M25 28 L30 35 L40 22" fill="none" stroke="#FB7185" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <h3 class="font-title text-xl text-rose-200">Ato de Contrição</h3>
+       </div>
+       <p class="text-rose-100/70 text-sm text-center">Arrependimento sincero dos pecados</p><button class="mt-4 w-full py-2 bg-rose-600/30 hover:bg-rose-600/50 text-rose-200 rounded-lg transition-colors"> Rezar Agora </button>
+      </div><!-- Glória -->
+      <div class="prayer-card bg-white/10 rounded-2xl p-6 border border-amber-400/20 cursor-pointer" onclick="openPrayer('gloria')">
+       <div class="text-center mb-4">
+        <svg width="60" height="60" viewbox="0 0 60 60" class="mx-auto mb-3">
+         <circle cx="30" cy="30" r="20" fill="none" stroke="#FBBF24" stroke-width="2" /> <circle cx="30" cy="30" r="10" fill="none" stroke="#FBBF24" stroke-width="1.5" /> <line x1="30" y1="5" x2="30" y2="15" stroke="#FBBF24" stroke-width="2" /> <line x1="30" y1="45" x2="30" y2="55" stroke="#FBBF24" stroke-width="2" /> <line x1="5" y1="30" x2="15" y2="30" stroke="#FBBF24" stroke-width="2" /> <line x1="45" y1="30" x2="55" y2="30" stroke="#FBBF24" stroke-width="2" />
+        </svg>
+        <h3 class="font-title text-xl text-amber-200">Glória ao Pai</h3>
+       </div>
+       <p class="text-amber-100/70 text-sm text-center">Louvor à Santíssima Trindade</p><button class="mt-4 w-full py-2 bg-amber-600/30 hover:bg-amber-600/50 text-amber-200 rounded-lg transition-colors"> Rezar Agora </button>
+      </div>
+     </div>
+    </section><!-- Saints Section -->
+    <section id="saints-section" class="max-w-6xl mx-auto hidden">
+     <h2 class="font-title text-3xl text-purple-300 text-center mb-8">Santos Protetores</h2>
+     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div class="prayer-card bg-white/10 rounded-xl p-4 text-center cursor-pointer" onclick="openSaint('francisco')">
+       <svg width="80" height="80" viewbox="0 0 80 80" class="mx-auto mb-2">
+        <circle cx="40" cy="25" r="12" fill="none" stroke="#8B4513" stroke-width="2" /> <ellipse cx="40" cy="55" rx="18" ry="22" fill="none" stroke="#8B4513" stroke-width="2" /> <circle cx="40" cy="25" r="18" fill="none" stroke="#FFD700" stroke-width="1" stroke-dasharray="2 2" /> <path d="M25 50 Q20 55 25 60" fill="none" stroke="#8B4513" stroke-width="2" /> <circle cx="55" cy="45" r="4" fill="none" stroke="#87CEEB" stroke-width="1" /> <path d="M53 43 L57 47 M53 47 L57 43" stroke="#87CEEB" stroke-width="1" />
+       </svg>
+       <h4 class="font-title text-yellow-200">São Francisco</h4>
+       <p class="text-xs text-yellow-100/60">Padroeiro dos animais</p>
+      </div>
+      <div class="prayer-card bg-white/10 rounded-xl p-4 text-center cursor-pointer" onclick="openSaint('antonio')">
+       <svg width="80" height="80" viewbox="0 0 80 80" class="mx-auto mb-2">
+        <circle cx="40" cy="22" r="10" fill="none" stroke="#4A3728" stroke-width="2" /> <ellipse cx="40" cy="52" rx="16" ry="20" fill="none" stroke="#4A3728" stroke-width="2" /> <circle cx="40" cy="22" r="15" fill="none" stroke="#FFD700" stroke-width="1" stroke-dasharray="2 2" /> <ellipse cx="55" cy="45" rx="8" ry="10" fill="none" stroke="#FFB6C1" stroke-width="1.5" /> <circle cx="55" cy="42" r="3" fill="none" stroke="#FFB6C1" stroke-width="1" /> <path d="M50 52 L60 52" stroke="#90EE90" stroke-width="2" />
+       </svg>
+       <h4 class="font-title text-yellow-200">Santo Antônio</h4>
+       <p class="text-xs text-yellow-100/60">Padroeiro dos pobres</p>
+      </div>
+      <div class="prayer-card bg-white/10 rounded-xl p-4 text-center cursor-pointer" onclick="openSaint('jose')">
+       <svg width="80" height="80" viewbox="0 0 80 80" class="mx-auto mb-2">
+        <circle cx="40" cy="22" r="10" fill="none" stroke="#8B4513" stroke-width="2" /> <path d="M35 30 Q40 35 45 30" fill="none" stroke="#8B4513" stroke-width="1.5" /> <ellipse cx="40" cy="55" rx="15" ry="20" fill="none" stroke="#8B4513" stroke-width="2" /> <circle cx="40" cy="22" r="15" fill="none" stroke="#FFD700" stroke-width="1" stroke-dasharray="2 2" /> <line x1="55" y1="35" x2="60" y2="70" stroke="#90EE90" stroke-width="3" /> <circle cx="58" cy="32" r="4" fill="#FFFFFF" stroke="#90EE90" stroke-width="1" />
+       </svg>
+       <h4 class="font-title text-yellow-200">São José</h4>
+       <p class="text-xs text-yellow-100/60">Padroeiro dos trabalhadores</p>
+      </div>
+      <div class="prayer-card bg-white/10 rounded-xl p-4 text-center cursor-pointer" onclick="openSaint('maria')">
+       <svg width="80" height="80" viewbox="0 0 80 80" class="mx-auto mb-2">
+        <circle cx="40" cy="22" r="10" fill="none" stroke="#4169E1" stroke-width="2" /> <ellipse cx="40" cy="52" rx="18" ry="22" fill="none" stroke="#4169E1" stroke-width="2" /> <circle cx="40" cy="22" r="16" fill="none" stroke="#FFD700" stroke-width="2" /> <path d="M32 10 Q40 2 48 10" fill="none" stroke="#FFD700" stroke-width="1.5" /> <circle cx="40" cy="5" r="2" fill="#FFD700" /> <path d="M30 45 L50 45" stroke="#4169E1" stroke-width="1" /> <path d="M35 50 L45 50" stroke="#4169E1" stroke-width="1" />
+       </svg>
+       <h4 class="font-title text-blue-200">Nossa Senhora</h4>
+       <p class="text-xs text-blue-100/60">Mãe de Deus</p>
+      </div>
+      <div class="prayer-card bg-white/10 rounded-xl p-4 text-center cursor-pointer" onclick="openSaint('pedro')">
+       <svg width="80" height="80" viewbox="0 0 80 80" class="mx-auto mb-2">
+        <circle cx="40" cy="22" r="10" fill="none" stroke="#CD853F" stroke-width="2" /> <ellipse cx="40" cy="55" rx="15" ry="20" fill="none" stroke="#FFD700" stroke-width="2" /> <circle cx="40" cy="22" r="15" fill="none" stroke="#FFD700" stroke-width="1" stroke-dasharray="2 2" /> <ellipse cx="58" cy="40" rx="8" ry="12" fill="none" stroke="#C0C0C0" stroke-width="1.5" /> <ellipse cx="62" cy="40" rx="6" ry="10" fill="none" stroke="#C0C0C0" stroke-width="1.5" />
+       </svg>
+       <h4 class="font-title text-yellow-200">São Pedro</h4>
+       <p class="text-xs text-yellow-100/60">Guardião das chaves do Céu</p>
+      </div>
+      <div class="prayer-card bg-white/10 rounded-xl p-4 text-center cursor-pointer" onclick="openSaint('paulo')">
+       <svg width="80" height="80" viewbox="0 0 80 80" class="mx-auto mb-2">
+        <circle cx="40" cy="22" r="10" fill="none" stroke="#8B0000" stroke-width="2" /> <ellipse cx="40" cy="55" rx="15" ry="20" fill="none" stroke="#8B0000" stroke-width="2" /> <circle cx="40" cy="22" r="15" fill="none" stroke="#FFD700" stroke-width="1" stroke-dasharray="2 2" /> <line x1="55" y1="30" x2="65" y2="60" stroke="#C0C0C0" stroke-width="2" /> <line x1="60" y1="35" x2="70" y2="35" stroke="#C0C0C0" stroke-width="2" /> <rect x="18" y="40" width="10" height="15" fill="none" stroke="#DEB887" stroke-width="1.5" />
+       </svg>
+       <h4 class="font-title text-yellow-200">São Paulo</h4>
+       <p class="text-xs text-yellow-100/60">Apóstolo dos gentios</p>
+      </div>
+      <div class="prayer-card bg-white/10 rounded-xl p-4 text-center cursor-pointer" onclick="openSaint('miguel')">
+       <svg width="80" height="80" viewbox="0 0 80 80" class="mx-auto mb-2">
+        <circle cx="40" cy="18" r="8" fill="none" stroke="#FFD700" stroke-width="2" /> <ellipse cx="40" cy="45" rx="12" ry="18" fill="none" stroke="#4169E1" stroke-width="2" /> <path d="M20 30 Q15 45 25 55" fill="none" stroke="#FFFFFF" stroke-width="2" /> <path d="M60 30 Q65 45 55 55" fill="none" stroke="#FFFFFF" stroke-width="2" /> <line x1="52" y1="35" x2="65" y2="65" stroke="#C0C0C0" stroke-width="2.5" /> <line x1="58" y1="35" x2="72" y2="35" stroke="#C0C0C0" stroke-width="2" />
+       </svg>
+       <h4 class="font-title text-yellow-200">São Miguel</h4>
+       <p class="text-xs text-yellow-100/60">Arcanjo protetor</p>
+      </div>
+      <div class="prayer-card bg-white/10 rounded-xl p-4 text-center cursor-pointer" onclick="openSaint('rita')">
+       <svg width="80" height="80" viewbox="0 0 80 80" class="mx-auto mb-2">
+        <circle cx="40" cy="22" r="10" fill="none" stroke="#2F2F2F" stroke-width="2" /> <ellipse cx="40" cy="55" rx="16" ry="20" fill="none" stroke="#2F2F2F" stroke-width="2" /> <circle cx="40" cy="22" r="15" fill="none" stroke="#FFD700" stroke-width="1" stroke-dasharray="2 2" /> <path d="M38 12 L40 8 L42 12" fill="none" stroke="#8B0000" stroke-width="1.5" /> <ellipse cx="60" cy="50" rx="6" ry="8" fill="none" stroke="#FF69B4" stroke-width="1.5" /> <circle cx="60" cy="48" r="2" fill="#FFD700" />
+       </svg>
+       <h4 class="font-title text-yellow-200">Santa Rita</h4>
+       <p class="text-xs text-yellow-100/60">Padroeira das causas impossíveis</p>
+      </div>
+     </div>
+    </section><!-- Verses Section -->
+    <section id="verses-section" class="max-w-4xl mx-auto hidden">
+     <h2 class="font-title text-3xl text-emerald-300 text-center mb-8">Versículos Inspiradores</h2>
+     <div class="space-y-4">
+      <div class="prayer-card bg-white/10 rounded-xl p-6 border-l-4 border-emerald-400">
+       <p class="text-yellow-100 text-lg italic mb-2">"Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna."</p>
+       <p class="text-emerald-300 font-title te
